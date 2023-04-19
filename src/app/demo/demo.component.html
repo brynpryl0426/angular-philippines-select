@@ -1,0 +1,35 @@
+<div>
+  Region:
+  <select required (change)="getProvinces($event)">
+    <option>-- None --</option>
+    <option *ngFor="let region of regions" [value]="region.region_code">{{region.region_name}}</option>
+  </select>
+  <br>
+  Province:
+  <select required (change)="getCities($event)">
+    <option>-- None --</option>
+    <option *ngFor="let province of provinces" [value]="province.province_code">{{province.province_name}}</option>
+  </select>
+  <br>
+  City:
+  <select required (change)="getBarangays($event)">
+    <option>-- None --</option>
+    <option *ngFor="let city of cities" [value]="city.city_code">{{city.city_name}}</option>
+  </select>
+  <br>
+  Barangay:
+  <select required (change)="getBarangay($event)">
+    <option>-- None --</option>
+    <option *ngFor="let barangay of barangays" [value]="barangay.brgy_code">{{barangay.brgy_name}}</option>
+  </select>
+  <br>
+  <br>
+  <br>
+  Region: {{selectedRegion}}
+  <br>
+  Province: {{selectedProvince}}
+  <br>
+  City: {{selectedCity}}
+  <br>
+  Barangay: {{selectedBarangay}}
+</div>

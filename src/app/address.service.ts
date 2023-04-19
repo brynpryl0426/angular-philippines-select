@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { forkJoin } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -93,6 +93,46 @@ export class AddressService {
       }),
       catchError((error) => {
         throw new Error(error);
+      })
+    );
+  }
+
+  getRegionByCode(code: string): Observable<string> {
+    return this.fetch('region').pipe(
+      map((data: any) => {
+        const region = data.find((region: any) => region.region_code === code);
+        return region.region_name;
+      })
+    );
+  }
+
+  getProvinceByCode(code: string): Observable<string> {
+    return this.fetch('province').pipe(
+      map((data: any) => {
+        const province = data.find(
+          (province: any) => province.province_code === code
+        );
+        return province.province_name;
+      })
+    );
+  }
+
+  getCityByCode(code: string): Observable<string> {
+    return this.fetch('city').pipe(
+      map((data: any) => {
+        const city = data.find((city: any) => city.city_code === code);
+        return city.city_name;
+      })
+    );
+  }
+
+  getBarangayByCode(code: string): Observable<string> {
+    return this.fetch('barangay').pipe(
+      map((data: any) => {
+        const barangay = data.find(
+          (barangay: any) => barangay.brgy_code === code
+        );
+        return barangay.brgy_name;
       })
     );
   }
